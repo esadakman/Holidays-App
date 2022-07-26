@@ -37,7 +37,6 @@ export default function SimpleContainer() {
     getData(url);
     getFlag();
   };
-
   return (
     <Container maxWidth="md" sx={{ marginTop: "1rem" }}>
       <CssBaseline />
@@ -53,20 +52,13 @@ export default function SimpleContainer() {
       >
         <TextField
           placeholder="Please Enter Country..."
-          variant="filled"
           type="search"
           name="country"
-          value={inputs.country}
-          InputProps={{ disableUnderline: true }}
           onChange={setInputs}
         />
         <TextField
           placeholder="Please Enter Year..."
-          variant="filled"
-          type="number"
           name="year"
-          value={inputs.year}
-          InputProps={{ disableUnderline: true }}
           sx={{ marginLeft: "20px", marginRight: "20px" }}
           onChange={setInputs}
         />
@@ -76,7 +68,7 @@ export default function SimpleContainer() {
           sx={{
             border: "1px solid #3B3C40",
             marginTop: "10px",
-            color: "#F0F0F2",
+            // color: "#F0F0F2",
             "&:hover": { background: "#6E6F73" },
           }}
         >
@@ -100,33 +92,32 @@ export default function SimpleContainer() {
           />
         </Typography>
         <Grid container>
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell sx={{ width: "150px" }}>Country Name</TableCell>
-                  <TableCell align="left">Holiday Name</TableCell>
-                  <TableCell align="left" sx={{ width: "150px" }}>
-                    Date
-                  </TableCell>
-                  <TableCell align="left">Description</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {loading ? (
-                  <h2>Loading...</h2>
-                ) : (
-                  data?.map((item, index) => {
-                    const {
-                      country: { name: ctname },
-                      date: { iso },
-                      description: desc,
-                      name: hname,
-                      urlid,
-                    } = item;
-                    return (
+          {loading ? (
+            <Typography>Loading...</Typography>
+          ) : (
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell sx={{ width: "150px" }}>Country Name</TableCell>
+                    <TableCell align="left">Holiday Name</TableCell>
+                    <TableCell align="left" sx={{ width: "150px" }}>
+                      Date
+                    </TableCell>
+                    <TableCell align="left">Description</TableCell>
+                  </TableRow>
+                </TableHead>
+                {data?.map((item, index) => {
+                  const {
+                    country: { name: ctname },
+                    date: { iso },
+                    description: desc,
+                    name: hname,
+                    urlid,
+                  } = item;
+                  return (
+                    <TableBody key={urlid}>
                       <TableRow
-                        key={urlid}
                         sx={{
                           backgroundColor: index % 2 ? "#A1A2A6" : "#F0F0F2",
                         }}
@@ -138,14 +129,58 @@ export default function SimpleContainer() {
                         <TableCell align="left">{iso}</TableCell>
                         <TableCell align="left">{desc}</TableCell>
                       </TableRow>
-                    );
-                  })
-                )}
-              </TableBody>
-            </Table>
-          </TableContainer>
+                    </TableBody>
+                  );
+                })}
+              </Table>
+            </TableContainer>
+          )}
         </Grid>
       </Box>
     </Container>
   );
 }
+
+// {/* <TableContainer component={Paper}>
+//             <Table sx={{ minWidth: 650 }} aria-label="simple table">
+//               <TableHead>
+//                 <TableRow>
+//                   <TableCell sx={{ width: "150px" }}>Country Name</TableCell>
+//                   <TableCell align="left">Holiday Name</TableCell>
+//                   <TableCell align="left" sx={{ width: "150px" }}>
+//                     Date
+//                   </TableCell>
+//                   <TableCell align="left">Description</TableCell>
+//                 </TableRow>
+//               </TableHead>
+//               {loading ? (
+//                 <Typography>Loading...</Typography>
+//               ) : (
+//                 data?.map((item, index) => {
+//                   const {
+//                     country: { name: ctname },
+//                     date: { iso },
+//                     description: desc,
+//                     name: hname,
+//                     urlid,
+//                   } = item;
+//                   return (
+//                     <TableBody key={urlid}>
+//                       <TableRow
+//                         sx={{
+//                           backgroundColor: index % 2 ? "#A1A2A6" : "#F0F0F2",
+//                         }}
+//                       >
+//                         <TableCell component="th" scope="row">
+//                           {ctname}
+//                         </TableCell>
+//                         <TableCell align="left">{hname}</TableCell>
+//                         <TableCell align="left">{iso}</TableCell>
+//                         <TableCell align="left">{desc}</TableCell>
+//                       </TableRow>
+//                     </TableBody>
+//                   );
+//                 })
+//               )}
+//             </Table>
+//           </TableContainer> */}
