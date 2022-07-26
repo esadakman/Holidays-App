@@ -12,9 +12,7 @@ Build a Holiday Picker App using ReactJS.
 
 ## Project Link
 
-You can reach my project from [here](https://holiday-app.netlify.app/) 👈
-
-##### You can reach my project from [here !]()
+##### You can reach my project from [here](https://holiday-app.netlify.app/) 👈
 
 ### Built With
 
