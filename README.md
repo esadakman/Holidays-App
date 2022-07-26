@@ -12,7 +12,7 @@ Build a Holiday Picker App using ReactJS.
 
 ## Project Link
 
-You can reach my project from here 👈
+You can reach my project from [here](https://holiday-app.netlify.app/) 👈
 
 ##### You can reach my project from [here !]()
 
@@ -43,7 +43,7 @@ SOLUTION
 │    │      └── Router.jsx
 │    ├── App.css
 │    ├── App.js
-│    ├── index.js
+│    └── index.js
 ├── package.json
 └── yarn.lock
 └── readme.md
@@ -61,3 +61,5 @@ $ npm start / yarn start
 ```
 
 ### Preview of the Project
+
+![holi](https://user-images.githubusercontent.com/98649983/180993913-53140f0e-494b-4715-8687-3df8ec420b2b.gif)
