@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -15,18 +15,27 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import useInput from "../hooks/useInput";
 import useFetch from "../hooks/useFetch";
+import axios from "axios";
 
 export default function SimpleContainer() {
-  const [inputs, setInputs] = useInput(/* { country: "TR", year: "2022" } */);
+  const [inputs, setInputs] = useInput({ country: "TR", year: "2022" });
+  const [flag, setFlag] = useState([]);
 
-  // let url = `https://calendarific.com/api/v2/holidays?&api_key=39e2da70e336b9f3b305de807f1d76a24057c8fb&country=${inputs.country}&year=${inputs.year}&type=national`;
-  let url = `https://calendarific.com/api/v2/holidays?&api_key=	a1c39eb8564d6fc77d33e6ddb7f174394b2f02a8&country=${inputs.country}&year=${inputs.year}&type=national`;
+  let url = `https://calendarific.com/api/v2/holidays?&api_key=39e2da70e336b9f3b305de807f1d76a24057c8fb&country=${inputs.country}&year=${inputs.year}&type=national`;
 
   const [data, loading, getData] = useFetch();
+
+  let url2 = `https://restcountries.com/v3.1/all`;
+
+  const getFlag = async () => {
+    const { data } = await axios.get(url2);
+    setFlag(data);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     getData(url);
+    getFlag();
   };
 
   return (
@@ -82,7 +91,13 @@ export default function SimpleContainer() {
           Holidays for {inputs.country}
         </Typography>
         <Typography sx={{ textAlign: "center" }}>
-          {/* <img src={flag?.filter((c) => c.altSpellings[0] === country.toUpperCase())[0]?.flags.png} alt="" /> */}
+          <img
+            src={
+              flag?.filter((c) => c.altSpellings[0] === inputs.country)[0]
+                ?.flags.png
+            }
+            alt=""
+          />
         </Typography>
         <Grid container>
           <TableContainer component={Paper}>
