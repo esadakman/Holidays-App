@@ -43,7 +43,6 @@ export default function SimpleContainer() {
       <Box
         sx={{
           bgcolor: "#A1A2A6",
-          height: "20vh",
           padding: "1rem",
           color: "#F0F0F2",
         }}
@@ -54,10 +53,12 @@ export default function SimpleContainer() {
           placeholder="Please Enter Country..."
           type="search"
           name="country"
+          required
           onChange={setInputs}
         />
         <TextField
           placeholder="Please Enter Year..."
+          required
           name="year"
           sx={{ marginLeft: "20px", marginRight: "20px" }}
           onChange={setInputs}
@@ -79,13 +80,13 @@ export default function SimpleContainer() {
         <Typography variant="h3" component="h3" align="center">
           {inputs.year}
         </Typography>
-        <Typography variant="h4" component="h4" align="center">
+        <Typography variant="h4" component="h4" mt={3} align="center">
           Holidays for {inputs.country}
         </Typography>
         <Typography sx={{ textAlign: "center" }}>
           <img
             src={
-              flag?.filter((c) => c.altSpellings[0] === inputs.country)[0]
+              flag?.filter((c) => c.altSpellings[0] === "inputs.country")[0]
                 ?.flags.png
             }
             alt=""
